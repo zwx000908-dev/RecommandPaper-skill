@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "2.0",
   "project_id": null,
   "name": null,
   "revision": 0,
@@ -9,21 +9,62 @@
   "field": null,
   "interests": [],
   "knowledge_background": null,
-  "stage": {"primary": null, "active_modes": [], "status": "unconfirmed", "rationale": null},
   "decision_needed": null,
   "description": null,
   "scientific_questions": [],
   "hypotheses": [],
   "seed_papers": [],
-  "concept_axes": {"question": [], "hypothesis": [], "mechanism": [], "method": [], "intermediate": [], "object": [], "route": [], "conditions": []},
-  "constraints": {"experimental": [], "computational": [], "access": [], "other": []},
+  "concept_axes": {
+    "question": [],
+    "hypothesis": [],
+    "mechanism": [],
+    "method": [],
+    "intermediate": [],
+    "object": [],
+    "route": [],
+    "conditions": []
+  },
+  "constraints": {
+    "experimental": [],
+    "computational": [],
+    "access": [],
+    "other": []
+  },
   "current_bottlenecks": [],
   "key_results": [],
-  "preferences": {"language": "zh-CN", "frequency": null, "reading_budget": null, "preferred_sources": [], "explicit_exclusions": []},
-  "search_strategy": {"queries": [], "sources": [], "time_windows": [], "mode_budgets": {}, "overlap_days": 7, "backfill_plan": null},
+  "preferences": {
+    "language": "zh-CN",
+    "frequency": null,
+    "reading_budget": null,
+    "preferred_sources": [],
+    "explicit_exclusions": []
+  },
+  "search_strategy": {
+    "queries": [],
+    "sources": [],
+    "time_windows": [],
+    "overlap_days": 7,
+    "backfill_plan": null,
+    "query_budgets": {}
+  },
   "source_checkpoints": {},
-  "schedule": {"requested": false, "status": "not_configured", "provider": null, "task_id": null, "timezone": null, "next_run_at": null, "last_run_at": null, "last_run_status": null, "delivery_target": null},
+  "schedule": {
+    "requested": false,
+    "status": "not_configured",
+    "provider": null,
+    "task_id": null,
+    "timezone": null,
+    "next_run_at": null,
+    "last_run_at": null,
+    "last_run_status": null,
+    "delivery_target": null
+  },
   "provenance": [],
   "change_history": [],
-  "open_questions": []
+  "open_questions": [],
+  "current_request": {
+    "question": null,
+    "desired_help": [],
+    "context": null
+  }
 }

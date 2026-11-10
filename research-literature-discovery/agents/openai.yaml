@@ -1,4 +1,4 @@
 interface:
   display_name: "科研文献发现与推荐"
-  short_description: "按课题阶段调整探索、前人工作核查与新进展追踪，保留反证和可迁移思路"
-  default_prompt: "使用 $research-literature-discovery，根据我的课题阶段建立档案并执行一次文献发现与推荐。"
+  short_description: "从当前问题与已有材料查找相关论文，比较证据、寻找方法并关注值得注意的变化"
+  default_prompt: "使用 $research-literature-discovery，根据我的问题和已有材料检索文献，解释关联并建议下一步阅读。"
