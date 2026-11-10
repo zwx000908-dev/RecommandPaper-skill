@@ -101,3 +101,7 @@ RecommandPaper-skill 关注这些具体联系。它会结合你已经读过的�
 ## 致谢
 
 感谢玻尔平台的 **Token-Plan** 支持。
+
+## 许可
+
+本项目采用 [MIT License](LICENSE)。

@@ -1,5 +1,6 @@
 ---
 name: research-literature-discovery
+license: MIT
 description: 根据研究问题、已有论文和实验线索检索文献，解释关联、比较证据，并记录值得跟进的新进展。用于关联文献推荐、方法查找、结果比较、多课题记录与按需更新追踪。
 ---
 
