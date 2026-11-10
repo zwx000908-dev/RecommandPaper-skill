@@ -1,76 +1,100 @@
 # RecommandPaper-skill
 
-把课题和手头的论文交给 AI，帮你找到值得继续读的文献。
+根据研究问题、已有论文和实验线索检索文献，解释关联、比较证据，并记录值得跟进的新进展。
+
+这是一个供 AI Agent 使用的科研文献推荐 Skill。给它一个问题、几篇论文或一段研究记录，就可以开始检索。搜索范围和阅读重点会随你提供的信息调整，一次请求也可以同时查背景、找方法、核对相反结果。
+
+[查看 Skill](research-literature-discovery/SKILL.md) · [阅读示例](#推荐结果是什么样的) · [安装与使用](#使用方法)
 
 ## 思路灵感
 
-一篇论文值不值得读，往往取决于手里正在做什么。同样一篇文章，有时能引出一个新想法，有时只是补充背景，也可能让人重新考虑已经采用的实验方案。
+读论文时，最有用的线索未必来自与课题名字最像的文章。研究对象不同的工作，可能提供一个可以借鉴的办法；一篇结论相反的论文，也可能帮助解释实验为什么没有达到预期。
 
-RecommandPaper-skill 想把这层判断带进文献推荐。搜索之前，先了解你已经知道什么、正在尝试什么、还有哪个问题没想清楚；拿到结果以后，再解释这篇文章为什么与你有关。
-
-推荐也应该留一点余地。有些工作研究的对象不同，却用了可以借鉴的办法；有些结果与预期相反，反而值得仔细读。只追着熟悉的关键词找，很容易错过这些线索。
+RecommandPaper-skill 关注这些具体联系。它会结合你已经读过的材料、正在尝试的方法和遇到的困难，寻找下一批值得看的文献。推荐时说明相似之处，也说明条件差在哪里，让你判断这篇文章是否值得花时间。
 
 ## 功能介绍
 
-**沿着手头的线索继续找。** 可以从一个模糊的想法开始，也可以给出几篇论文、一段研究计划或一次失败的实验记录。Skill 会据此选择检索范围，沿参考文献、后续引用、相关团队和方法继续查找。
+可以从已有论文继续往下查。Skill 会利用参考文献、后续引用、相关团队和语义线索寻找关联工作；需要核对方法来源或已有结果时，关键旧论文也会保留。
 
-**把相关之处讲清楚。** 每篇推荐都会说明它研究了什么、采用什么方法，以及与你的工作有什么联系。必要时将几篇文章放在一起比较，帮助分辨已有结果、适用条件和仍待验证的想法。推荐附有原文链接，并标明依据来自全文还是摘要。
+可以围绕一个困难找办法。例如实验结果与预期不符、不同条件下结论不一致，或者某种分析手段不够用。检索会关注其他工作如何处理相似问题，并说明方法迁移到当前课题还需要哪些条件。
 
-**留意会改变判断的信息。** 相近工作的出现、已有结论的修订，或者一种可能解决当前困难的方法，都值得单独提醒。联系较远的文章会放进观察列表，写明可借鉴之处，方便以后回看。
+也可以关注新论文和已有工作的修改。直接相关的结果会优先提醒；联系较远但理由明确的文章会保留在观察列表。同一工作的预印本和正式发表版本合并记录，重要修订、勘误和撤稿另作提示。
 
-**接着上一次的进展工作。** 不同课题可以分别保存档案。改了研究思路、补了实验结果或遇到新的困难，更新描述后就能调整检索。收藏和忽略会影响推荐，但反面结果和竞争工作不会因此被自动排除。同一篇论文的预印本与正式版会合并，重要修改另作提示。
+需要反复使用时，可以为不同课题分别保存论文、研究问题、反馈和检索记录。补充实验结果或修改想法后，后续检索会据此调整。收藏与忽略用于改善推荐，可能影响判断的反证和竞争工作仍会保留。
+
+## 推荐结果是什么样的
+
+每篇推荐包含可核验的文献信息与链接、核心问题、主要方法、论文报告的发现，以及它与你的具体关联。还会建议下一步读哪里、比较什么，或为什么暂时留作观察。
+
+内容相互关联时，会把几篇论文放在一起比较。只需要少量推荐时，就直接给出文献卡；不会每次都生成一套长报告。
+
+推荐按用途标记为“优先提醒”“建议阅读”和“弱相关观察”，同时注明读到了全文还是只有摘要。论文结果、作者解释和进一步的推测会分开表述，预印本也会标明评审状态。
+
+三份示例展示了不同请求下的写法：
+
+- [从一个兴趣方向拓展阅读线索](research-literature-discovery/references/example-explore.md)
+- [把研究设想与已有论文放在一起比较](research-literature-discovery/references/example-define.md)
+- [围绕模型表现不稳定的问题查找证据和方法](research-literature-discovery/references/example-track.md)
+
+示例以小样本分子性质预测为题，使用真实历史论文；你可以换成自己的问题。它们用于展示输出方式，不是当前最新文献报告。
 
 ## 使用方法
 
-将 `research-literature-discovery/` 文件夹放进所用 Agent 的 Skill 目录。以 Codex 为例，默认位置是 `~/.codex/skills/`；设置了 `CODEX_HOME` 时，使用其中的 `skills` 子目录。
+将仓库里的 `research-literature-discovery/` 整个文件夹放进所用 Agent 的 Skill 目录。以 Codex 为例，默认位置是 `~/.codex/skills/`；设置了 `CODEX_HOME` 时，使用其中的 `skills` 子目录。
 
-安装后，直接说明眼前的需求。例如：
-
-```text
-使用 $research-literature-discovery。
-
-我对小样本分子性质预测感兴趣，懂一些化学，机器学习刚开始学。
-请找几条不同的研究线索，说明各自需要什么基础，以及可以先读哪些文章。
-```
-
-也可以从已有材料开始：
+安装后，直接说明你想查什么：
 
 ```text
 使用 $research-literature-discovery。
 
-下面是我的研究设想和最近读过的三篇论文。
-请继续查找相关工作，重点比较它们已经解决的问题和我的设想。
-如果存在相反结论，也一起列出来。
+下面是我的研究问题和最近读过的几篇论文。
+帮我继续找相关工作，说明每篇与这个问题的联系。
+重点看看有没有可借鉴的方法，以及与现有解释不一致的结果。
 ```
 
-遇到具体困难时，把条件说清楚通常更有帮助：
+也可以给出具体困难：
 
 ```text
 使用 $research-literature-discovery。
 
 我的模型在随机划分的数据上表现不错，换一种划分方式后效果明显下降。
-请找讨论这类现象的论文，也看看其他领域有没有可借鉴的评估方法。
-每篇说明与这个问题的联系，并建议先读哪一部分。
+请找讨论这类现象的论文，比较它们的评估方法，并建议先读哪一部分。
 ```
 
-不必先填一张完整的表。研究笔记、论文链接和已有对话都可以作为起点，需要补充的信息会随检索逐步明确。
+已有课题记录时，可以继续追加材料：
 
-检索需要 Agent 能联网，并拥有相应信息源的访问权限。希望定期收到更新时，还需要接入所在环境的定时任务；没有配置就按单次请求运行。课题档案请保存在自己的数据目录，未发表的设想和实验记录不要上传到本公开仓库。
+```text
+使用 $research-literature-discovery，继续上次保存的课题。
+
+我补充了下面这些结果。请更新记录，查找相关的新论文，
+也重新看看之前观察列表里有没有现在用得上的方法。
+```
+
+不用先填完整的表。有论文链接、笔记或问题描述就可以开始；只有缺少的信息会影响检索时，才需要补充。
+
+### 运行条件
+
+在线检索需要 Agent 能联网，并能访问所选信息源。保存课题和阅读记录需要持久文件目录。定期更新则需要另外接入可用的调度工具；未配置时按单次请求运行。
+
+本仓库提供 Skill 指令、模板和示例，不附带 API 密钥、付费数据库权限或常驻后台服务。可用信息源和配置方式见 [工具与调度说明](research-literature-discovery/references/tools-and-scheduling.md)。
+
+实际课题档案应保存在自己的数据目录。不要把未发表的设想、实验记录或访问凭证提交到这个公开仓库。
 
 <details>
-<summary>查看示例和详细说明</summary>
+<summary>项目文件</summary>
 
-示例使用同一研究方向的真实历史论文，展示不同需求下的推荐方式；它们不是当前最新文献报告。
+| 文件 | 用途 |
+|---|---|
+| [SKILL.md](research-literature-discovery/SKILL.md) | Agent 执行检索与推荐的主指令 |
+| [课题模板](research-literature-discovery/assets/project-template.json) | 保存问题、已有材料、反馈与检索设置 |
+| [检索与推荐规则](research-literature-discovery/references/retrieval-rules.md) | 查询扩展、推荐分级和反馈处理 |
+| [档案与版本规则](research-literature-discovery/references/state-and-versions.md) | 多课题记录、文献去重、版本变化及旧档案迁移 |
+| [输出格式](research-literature-discovery/references/output-format.md) | 文献卡和推荐内容的基本要求 |
+| [示例文献](research-literature-discovery/references/example-corpus.md) | 示例使用的真实来源与阅读依据 |
+| [验收场景](research-literature-discovery/references/acceptance.md) | 检查遗漏、重复、证据不足和反馈等情况 |
+| [验证记录](VALIDATION.md) | 已完成的检查与尚未验证的能力 |
 
-- 示例：[拓展研究线索](research-literature-discovery/references/example-explore.md) · [比较已有工作](research-literature-discovery/references/example-define.md) · [筛选值得关注的变化](research-literature-discovery/references/example-track.md)
-- [完整 Skill](research-literature-discovery/SKILL.md)与[课题档案模板](research-literature-discovery/assets/project-template.json)
-- [检索、推荐与反馈规则](research-literature-discovery/references/retrieval-rules.md)
-- [去重和版本记录](research-literature-discovery/references/state-and-versions.md)
-- [信息源与定时任务接入](research-literature-discovery/references/tools-and-scheduling.md)
-- [推荐内容格式](research-literature-discovery/references/output-format.md)与[示例文献来源](research-literature-discovery/references/example-corpus.md)
-- [验收场景](research-literature-discovery/references/acceptance.md)与[已有验证](VALIDATION.md)
-
-Skill 会区分论文报告的结果、作者的解释和由此作出的推测。预印本会标注评审状态，未找到相近文献也不能直接作为首创性的依据。仓库不附带 API 密钥、付费数据库权限或常驻后台服务。
+没有检索到相近工作，只能说明本轮检索的结果，不能直接作为首创性依据。具体判断仍需结合原文与检索范围。
 
 </details>
 

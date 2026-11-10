@@ -1,4 +1,4 @@
 interface:
   display_name: "科研文献发现与推荐"
-  short_description: "从当前问题与已有材料查找相关论文，比较证据、寻找方法并关注值得注意的变化"
-  default_prompt: "使用 $research-literature-discovery，根据我的问题和已有材料检索文献，解释关联并建议下一步阅读。"
+  short_description: "根据研究问题和已有材料推荐论文，解释具体关联、比较证据并记录值得跟进的新进展"
+  default_prompt: "使用 $research-literature-discovery，结合我的研究问题和已有材料查找论文，说明具体关联、证据差异与建议阅读顺序。"
