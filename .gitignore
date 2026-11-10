@@ -1,0 +1,6 @@
+literature-projects/
+**/literature-projects/
+.env
+.env.*
+__pycache__/
+*.pyc
